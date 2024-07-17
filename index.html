@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>color-insight</title>
+    <style>
+      html, body {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+      #app {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 1s;
+        background: linear-gradient(to bottom, #fff, #333);
+      }
+      .item {
+        width: 100vw;
+        text-align: center;
+      }
+      .swiper {
+        width: 658px;
+        height: 370px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <div class="item">
+          <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <img src="/images/1.webp" id="slide_1" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img src="/images/2.webp" id="slide_2" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img src="/images/3.webp" id="slide_3" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img src="/images/4.webp" id="slide_4" alt="">
+              </div>
+              <div class="swiper-slide">
+                <img src="/images/5.webp" id="slide_5" alt="">
+              </div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
