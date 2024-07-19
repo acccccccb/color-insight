@@ -1,6 +1,5 @@
 {
   "name": "@ihtmlcss/color-insight",
-  "private": true,
   "version": "1.0.0",
   "type": "module",
   "description": "获取图片主色调",
