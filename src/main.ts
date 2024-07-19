@@ -3,17 +3,13 @@ import {colorInsight} from './utils/index'
 (function() {
     const bgColor = new Array(5);
     new Swiper('.swiper', {
-        // Optional parameters
-        // direction: 'vertical',
         autoplay: true,
         loop: true,
-
-        // If we need pagination
+        speed: 100,
+        delay: 1000,
         pagination: {
             el: '.swiper-pagination',
         },
-
-        // Navigation arrows
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -22,7 +18,10 @@ import {colorInsight} from './utils/index'
             init: async () => {
                 const src = document.getElementById(`slide_1`)?.src;
                 const rgba = bgColor[0] || await colorInsight(src);
-                document.getElementById('app').style.background =  `linear-gradient(to bottom, rgba(255,255,255,1), rgba(${rgba.join(",")}))`;
+                document.getElementById('app').style.background =  `rgba(${rgba.join(",")})`;
+                const titleMaskColor = [...rgba];
+                titleMaskColor[titleMaskColor.length - 1] = 0.7;
+                document.getElementById('slide_title_1').style.background =  `rgba(${titleMaskColor.join(",")})`;
                 bgColor[0] = rgba;
             },
             slideChangeTransitionStart: async ({realIndex}) => {
@@ -30,7 +29,10 @@ import {colorInsight} from './utils/index'
                 const rgba = bgColor[realIndex] || await colorInsight(src);
                 bgColor[realIndex] = rgba;
                 setTimeout(() => {
-                    document.getElementById('app').style.background =  `linear-gradient(to bottom, rgba(255,255,255,1), rgba(${rgba.join(",")}))`;
+                    document.getElementById('app').style.background =  `rgba(${rgba.join(",")})`;
+                    const titleMaskColor = [...rgba];
+                    titleMaskColor[titleMaskColor.length - 1] = 0.7;
+                    document.getElementById(`slide_title_${realIndex + 1}`).style.background =  `rgba(${titleMaskColor.join(",")})`;
                 }, 10)
             }
         }

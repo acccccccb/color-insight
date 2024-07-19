@@ -1,5 +1,5 @@
 // 均匀获取指定数量的图片坐标
-export const generatePixelCoordinates = (ctx, width, height, num) => {
+export const generatePixelCoordinates = (ctx: CanvasRenderingContext2D, width:number, height:number, num:number) => {
     const n = width * height < num ? num : width * height;
     const coordinates = [];
     const cols = Math.ceil(Math.sqrt(n * (width / height))); // 计算列数
@@ -28,7 +28,7 @@ export const generatePixelCoordinates = (ctx, width, height, num) => {
 }
 
 // 图片文件转base64
-export const fileToBase64 = (file) => {
+export const fileToBase64 = (file: File) => {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
@@ -36,26 +36,39 @@ export const fileToBase64 = (file) => {
         reader.onerror = error => reject(error);
     });
 }
-export const colorInsight = async (dataUrl: string, max: number = 100) => {
+export const colorInsight = async (dataUrl: string, max: number = 1440) => {
     return new Promise(async (resolve) => {
         const img = new Image();
+        img.crossOrigin = 'anonymous';
         img.onload = () => {
             const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = 100;
-            canvas.height = 100;
+            const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+            const width = img.width;
+            const height = img.height;
+            const rate = width / height;
+            const canvasWidth = 120;
+            canvas.width = canvasWidth;
+            canvas.height = canvasWidth * rate;
             // 将图片缩放为 100 x 100
             ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0,canvas.width, canvas.height);
-            const colorArr = generatePixelCoordinates(ctx, canvas.width, canvas.height, max);
-
+            const colorArr = generatePixelCoordinates(ctx, canvas.width, canvas.height, canvas.width * canvas.height).filter(item => {
+                return item[0] > 10 && item[0] < 250 &&
+                    item[1] > 10 && item[1] < 250 &&
+                    item[2] > 10 && item[2] < 250 &&
+                    item[3] > 50
+            });
+            // 抽取中间值
+            const range = 0.6;
+            const resultArr = colorArr.splice(Math.floor(colorArr.length * (range / 2)), Math.floor(colorArr.length * (1 - range)));
             // 计算rgba均值
-            const rgba = colorArr.reduce((acc, cur) => {
+            const rgba = resultArr.reduce((acc, cur) => {
                 acc[0] += cur[0];
                 acc[1] += cur[1];
                 acc[2] += cur[2];
                 acc[3] += cur[3];
                 return acc;
-            }, [0, 0, 0, 0]).map(item => Math.floor(item / colorArr.length));
+            }, [0, 0, 0, 0]).map(item => Math.floor(item / resultArr.length));
             resolve(rgba);
         }
         img.src = dataUrl;

@@ -1,14 +1,33 @@
 {
-  "name": "color-insight",
+  "name": "@ihtmlcss/color-insight",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "获取图片主色调",
+  "main": "/dist/index.es.js",
+  "files": [
+    "dist/utils"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/acccccccb/color-insight.git"
+  },
+  "keywords": [
+    "color"
+  ],
+  "author": "ihtmlcss.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acccccccb/color-insight/issues"
+  },
+  "homepage": "https://github.com/acccccccb/color-insight#readme",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "path": "^0.12.7",
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
   }
