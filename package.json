@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "获取图片主色调",
-  "main": "/dist/index.es.js",
+  "main": "/src/utils/index.ts",
   "files": [
-    "dist/utils"
+    "src/utils/index.ts"
   ],
   "repository": {
     "type": "git",
