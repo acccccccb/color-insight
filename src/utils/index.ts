@@ -69,7 +69,7 @@ export const colorInsight = async (dataUrl: string, max: number = 1440) => {
                 acc[3] += cur[3];
                 return acc;
             }, [0, 0, 0, 0]).map(item => Math.floor(item / resultArr.length));
-            rgba[3] = 255 / rgba[3];
+            rgba[3] = (rgba[3] / 255).toFixed(1);
             resolve(rgba);
         }
         img.src = dataUrl;

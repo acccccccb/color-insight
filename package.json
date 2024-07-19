@@ -1,6 +1,6 @@
 {
   "name": "color-insight",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "获取图片主色调",
   "main": "/src/utils/index.ts",
