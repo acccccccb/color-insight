@@ -1,4 +1,4 @@
-# @ihtmlcss/color-insight
+# color-insight
 
 ----
 
@@ -6,10 +6,10 @@
 
 
 ## 使用说明
-安装 `npm i @ihtmlcss/color-insight`
+安装 `npm i color-insight`
 
 ```shell
-import { colorInsight } from '@ihtmlcss/color-insight';
+import { colorInsight } from 'color-insight';
 
 (async () => {
   const imgSrc = './src/assets/img/test.jpg'
